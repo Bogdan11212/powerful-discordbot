@@ -1,14 +1,15 @@
 import disnake
 from disnake.ext import commands
-import config
 import os
-import keep_alive
+
 
 bot = commands.Bot(command_prefix="!",
                    intents=disnake.Intents.all(),
                    help_command=None,
                   activity=disnake.Game('use /help ',                                         status=disnake.Status.idle))
 
+
+TOKEN = token # paste token here
 
 @bot.command()
 @commands.is_owner()
@@ -31,5 +32,4 @@ for filename in os.listdir("cogs"):
   if filename.endswith(".py"):
     bot.load_extension(f"cogs.{filename[:-3]}")
 
-keep_alive.keep_alive()
-bot.run(config.data["TOKEN"])
+bot.run(["TOKEN"])
